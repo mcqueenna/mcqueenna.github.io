@@ -1,0 +1,17 @@
+# Process Builder Flows
+
+## Populate SMT Expiry Date and SMT Email
+
+```XL
+IF(
+    AND(
+        $Setup.SDS_Change_Set_Settings__c.Run_Process_Builder__c == true,
+        !ISNULL([Safe_Ministry__c].SMT_Registration_Number__c),
+        OR(
+            VALUE([Safe_Ministry__c].SMT_Registration_Number__c) >= VALUE([Safe_Ministry__c].wwcc_contact__r.SMT_Registration_Number__c),
+            ISNULL([Safe_Ministry__c].wwcc_contact__r.SMT_Registration_Number__c),
+            ISBLANK([Safe_Ministry__c].wwcc_contact__r.SMT_Registration_Number__c)
+        ) 
+    ), 
+TRUE, FALSE)
+```
