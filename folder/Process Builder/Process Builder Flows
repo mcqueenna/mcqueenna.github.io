@@ -5,13 +5,6 @@
 ```Python
 IF(
     AND(
-        $Setup.SDS_Change_Set_Settings__c.Run_Process_Builder__c == true,
-        !ISNULL([Safe_Ministry__c].SMT_Registration_Number__c),
-        OR(
-            [Safe_Ministry__c].SMT_Expiry_Date_Import__c >= [Safe_Ministry__c].wwcc_contact__r.SMT_Expiry_Date__c,
-            ISNULL([Safe_Ministry__c].wwcc_contact__r.SMT_Registration_Number__c),
-            ISBLANK([Safe_Ministry__c].wwcc_contact__r.SMT_Registration_Number__c)
-        ) 
     ), 
 TRUE, FALSE)
 ```
